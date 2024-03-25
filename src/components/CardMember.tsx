@@ -194,10 +194,12 @@ export const CardMember = ({
         >
           {team && (
             <g className="stagger" style={{ animationDelay: `${300}ms` }}>
-              <circle cx="5" cy="6" r="5" fill="#e34c26" />
-              <text x="15" y="10" fill="#ddd">
-                {team}
-              </text>
+              <a href={`https://beta.gouv.fr/incubateurs/${team}.html`}>
+                <circle cx="5" cy="6" r="5" fill="#e34c26" />
+                <text x="15" y="10" fill="#ddd">
+                  {team}
+                </text>
+              </a>
             </g>
           )}
           {activeStartups.map((startup, index) => (

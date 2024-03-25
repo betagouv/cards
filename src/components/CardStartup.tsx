@@ -1,5 +1,3 @@
-import { Text } from "@visx/text";
-
 import { ExternalLink } from "./ExternalLink";
 import { LogoBeta } from "./LogoBeta";
 import { LogoGitHub } from "./LogoGitHub";
@@ -10,7 +8,7 @@ import { wrapTextMultiline } from "@/utils";
 
 const WIDTH = 600;
 
-const getLatestPhase = (phases: { start: string }[]) => {
+const getLatestPhase = (phases: { start: string; name: string }[]) => {
   return phases.length
     ? phases
         .sort(
@@ -22,15 +20,6 @@ const getLatestPhase = (phases: { start: string }[]) => {
 };
 
 export const CardStartup = ({
-  // fullname,
-  // role,
-  // link,
-  // github,
-  // competences = [],
-  // teams = [],
-  // missions = [],
-  // startups = [],
-  // previously = [],
   id,
   title,
   mission,
@@ -45,34 +34,10 @@ export const CardStartup = ({
   dashlord_url,
   accessibility_status,
   active_members,
-}: {
-  // fullname: string;
-  // title: string;
-  // mision: string;
-  // link?: string;
-  // // link?: string;
-  // // github?: string;
-  // // competences?: string[];
-  // // missions?: { startups: string[] }[];
-  // // startups?: string[];
-  // // previously?: string[];
-  // // teams: string[];
-  // avatar?: string;
-}) => {
+}: any) => {
   const logos = [];
   const url = link;
-  // if (link && link.toLowerCase().includes("linkedin")) {
-  //   logos.push((props: any) => (
-  //     <a target="_blank" href={link}>
-  //       <LogoLinkedIn width={32} height={32} {...props} />
-  //     </a>
-  //   ));
-  // } else if (link && link.toLowerCase().includes("twitter")) {
-  //   logos.push((props: any) => (
-  //     <a target="_blank" href={link}>
-  //       <LogoTwitter width={30} height={30} {...props} />
-  //     </a>
-  //   ));
+
   if (link) {
     logos.push((props: any) => (
       <a target="_blank" href={link}>

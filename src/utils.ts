@@ -10,7 +10,7 @@ import wrap from "word-wrap";
  * @param {string} str String to encode.
  * @returns {string} Encoded string.
  */
-const encodeHTML = (str) => {
+const encodeHTML = (str: string) => {
   return str
     .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
       return "&#" + i.charCodeAt(0) + ";";
