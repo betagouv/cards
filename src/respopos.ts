@@ -1,0 +1,28 @@
+// from https://www.notion.so/betagouv-dinum/Responsables-d-incubateur-de-portefeuille-aacd0458af0e44bba259cfc2b6ce3585
+export const respopos = {
+  "fab-geocommuns": ["margot.sanchez", "mael.inizan", "ishan.bhojwani"],
+  mtes: ["margot.sanchez", "mael.inizan", "ishan.bhojwani"],
+  ademe: ["margot.sanchez", "mael.inizan", "ishan.bhojwani"],
+  accelerema: ["margot.sanchez", "mael.inizan", "ishan.bhojwani"],
+  fabnumdef: ["thibault.desjardins", "arthur.hatchuel"],
+  sgmas: ["elsa.le-duigou", "ishan.bhojwani"],
+  culture: ["adrien.zemour", "ishan.bhojwani"],
+  "latelier.numerique.du.ministere.de.leurope.et.des.affaires.etrangeres": [
+    "adrien.zemour",
+    "ishan.bhojwani",
+  ],
+  bercy: ["magali.marcel", "arthur.hatchuel"],
+  "fabrique-dgfip": ["magali.marcel", "arthur.hatchuel"],
+  anct: ["adrien.zemour", "ishan.bhojwani"],
+  "lab-mi": ["thibault.desjardins", "arthur.hatchuel"],
+  justice: ["paul.burgun", "ishan.bhojwani"],
+  dinum: ["clemence.lopez", "arhur.hatchuel"],
+  "lab-innov-anssi": ["elsa.le-duigou", "ishan.bhojwani"],
+  "gip-inclusion": ["yowa.muzadi", "ishan.bhojwani"],
+  "pole-emploi": ["yowa.muzadi", "ishan.bhojwani"],
+  "france-travail": ["yowa.muzadi", "ishan.bhojwani"],
+  "mission-inserjeunes": ["yowa.muzadi", "ishan.bhojwani"],
+  "mission-apprentissage": ["yowa.muzadi", "ishan.bhojwani"],
+  engagement_civique: ["yowa.muzadi", "ishan.bhojwani"],
+  dinum_produits_interministeriels: ["ishan.bhojwani"],
+};

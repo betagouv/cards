@@ -34,6 +34,7 @@ export const CardStartup = ({
   dashlord_url,
   accessibility_status,
   active_members,
+  respopos,
 }: any) => {
   const logos = [];
   const url = link;
@@ -117,7 +118,9 @@ export const CardStartup = ({
 
   const computedHeight = Math.max(
     250,
-    70 + 30 + Math.max(pins.length, active_members.length) * 22
+    70 +
+      30 +
+      Math.max(pins.length, active_members.length + respopos.length) * 22
   );
   const cardHeight = Math.max(CARD_MIN_HEIGHT, computedHeight);
   const missionLines = wrapTextMultiline(mission, 65);
@@ -233,7 +236,7 @@ export const CardStartup = ({
       ))}
 
       <g transform={`translate(250, 0)`}>
-        {active_members.map(
+        {respopos.map(
           (
             member: { id: string; fullname: string; role: string },
             i: number
@@ -243,6 +246,26 @@ export const CardStartup = ({
               transform={`translate(25, ${105 + 20 * i})`}
               className="stagger"
               style={{ animationDelay: `${200 * (i + 1)}ms` }}
+            >
+              <a href={`/api/member/${member.id}`}>
+                <circle cx="5" cy="6" r="5" fill={"#438eff"} />
+                <text x="15" y="10" fill="#ddd">
+                  {member.fullname} (Respopo)
+                </text>
+              </a>
+            </g>
+          )
+        )}
+        {active_members.map(
+          (
+            member: { id: string; fullname: string; role: string },
+            i: number
+          ) => (
+            <g
+              key={member.id}
+              transform={`translate(25, ${105 + 20 * (i + respopos.length)})`}
+              className="stagger"
+              style={{ animationDelay: `${200 * (i + 1 + respopos.length)}ms` }}
             >
               <a href={`/api/member/${member.id}`}>
                 <circle cx="5" cy="6" r="5" fill={"#33de9c"} />
