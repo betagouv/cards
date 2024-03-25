@@ -74,7 +74,7 @@ export default async function handler(
   });
   if (results.length) {
     const result = results[0];
-    const host = process.env.HOST || "http://127.0.0.1:3000";
+    const host = process.env.DOMAIN || "http://127.0.0.1:3000";
     const url = `${host}/api/${result.item.type}/${result.item.id}.svg`;
     res.redirect(url);
     return;
