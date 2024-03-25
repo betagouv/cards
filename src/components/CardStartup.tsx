@@ -136,7 +136,6 @@ export const CardStartup = ({
       <desc id="descId"></desc>
       <style>{css}</style>
       <rect
-        data-testid="card-bg"
         x="0.5"
         y="0.5"
         rx="4.5"
@@ -144,7 +143,7 @@ export const CardStartup = ({
         stroke="#c2d1ff"
         width={WIDTH - 5}
         fill="#fffefe"
-        stroke-opacity="1"
+        strokeOpacity="1"
       />
 
       <g data-testid="card-title" transform="translate(25, 40)">
@@ -210,7 +209,7 @@ export const CardStartup = ({
 
         {missionLines.map((line: string, i: number) => {
           return (
-            <text key={line} x="82" y={15 + (i + 1) * 15}>
+            <text className="baseline" key={line} x="82" y={15 + (i + 1) * 15}>
               {line}
             </text>
           );
@@ -218,7 +217,12 @@ export const CardStartup = ({
       </g>
 
       {pins.map((pin, i) => (
-        <g key={pin.label} transform={`translate(25, ${105 + 20 * i})`}>
+        <g
+          key={pin.label}
+          transform={`translate(25, ${105 + 20 * i})`}
+          className="stagger"
+          style={{ animationDelay: `${200 * (i + 1)}ms` }}
+        >
           <a href={pin.href}>
             <circle cx="5" cy="6" r="5" fill={pin.color} />
             <text x="15" y="10" fill="#ddd">
@@ -234,7 +238,12 @@ export const CardStartup = ({
             member: { id: string; fullname: string; role: string },
             i: number
           ) => (
-            <g key={member.id} transform={`translate(25, ${105 + 20 * i})`}>
+            <g
+              key={member.id}
+              transform={`translate(25, ${105 + 20 * i})`}
+              className="stagger"
+              style={{ animationDelay: `${200 * (i + 1)}ms` }}
+            >
               <a href={`/api/member/${member.id}`}>
                 <circle cx="5" cy="6" r="5" fill={"#33de9c"} />
                 <text x="15" y="10" fill="#ddd">

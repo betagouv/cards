@@ -65,7 +65,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
     <g
       id="logo-beta-gouv"
       stroke="none"
-      stroke-width="1"
+      strokeWidth="1"
       fill="none"
       fill-rule="evenodd"
     >
@@ -83,7 +83,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
           <g
             id="g5012"
             stroke="none"
-            stroke-width="1"
+            strokeWidth="1"
             fill="none"
             fill-rule="evenodd"
             mask="url(#mask-4)"
@@ -95,7 +95,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
             <g transform="translate(0.000000, 0.000000)">
               <g
                 id="g4184-Clipped"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 transform="translate(14.994135, 91.000000)"
               >
@@ -148,7 +148,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
               ></circle>
               <g
                 id="path5154-Clipped"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 transform="translate(60.596184, 26.147091)"
               >
@@ -158,9 +158,9 @@ export const LogoBeta = (props: SVGProps<any>) => (
                 <g id="rect5164"></g>
                 <ellipse
                   id="path5154"
-                  stroke-opacity="0.70238097"
+                  strokeOpacity="0.70238097"
                   stroke="#FFFFFF"
-                  stroke-width="0.576326038"
+                  strokeWidth="0.576326038"
                   mask="url(#mask-6)"
                   cx="7.80471107"
                   cy="-1.5773817"
@@ -170,7 +170,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
               </g>
               <g
                 id="path5154-1-Clipped"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 transform="translate(60.596184, 26.147091)"
               >
@@ -180,9 +180,9 @@ export const LogoBeta = (props: SVGProps<any>) => (
                 <g id="rect5164-6"></g>
                 <circle
                   id="path5154-1"
-                  stroke-opacity="0.70238097"
+                  strokeOpacity="0.70238097"
                   stroke="#FFFFFF"
-                  stroke-width="0.5"
+                  strokeWidth="0.5"
                   mask="url(#mask-8)"
                   cx="-2.36486959"
                   cy="28.1167679"
@@ -191,7 +191,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
               </g>
               <g
                 id="path5154-1-9-Clipped"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 transform="translate(60.596184, 26.147091)"
               >
@@ -201,9 +201,9 @@ export const LogoBeta = (props: SVGProps<any>) => (
                 <g id="rect5164-6-7"></g>
                 <circle
                   id="path5154-1-9"
-                  stroke-opacity="0.70238097"
+                  strokeOpacity="0.70238097"
                   stroke="#FFFFFF"
-                  stroke-width="0.5"
+                  strokeWidth="0.5"
                   mask="url(#mask-10)"
                   cx="-7.08708935"
                   cy="64.9151163"
@@ -212,7 +212,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
               </g>
               <g
                 id="path5154-1-2-Clipped"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 transform="translate(60.596184, 26.147091)"
               >
@@ -222,9 +222,9 @@ export const LogoBeta = (props: SVGProps<any>) => (
                 <g id="rect5164-6-0"></g>
                 <circle
                   id="path5154-1-2"
-                  stroke-opacity="0.70238097"
+                  strokeOpacity="0.70238097"
                   stroke="#FFFFFF"
-                  stroke-width="0.5"
+                  strokeWidth="0.5"
                   mask="url(#mask-12)"
                   cx="11.2608233"
                   cy="53.1542689"
@@ -233,7 +233,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
               </g>
               <g
                 id="g5644-Clipped"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 transform="translate(0.615733, 0.892165)"
               >
@@ -258,7 +258,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
               </g>
               <g
                 id="g5640-Clipped"
-                stroke-width="1"
+                strokeWidth="1"
                 fill="none"
                 transform="translate(0.615733, 0.892165)"
               >

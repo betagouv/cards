@@ -98,7 +98,6 @@ export const CardMember = ({
       <desc id="descId"></desc>
       <style>{css}</style>
       <rect
-        data-testid="card-bg"
         x="0.5"
         y="0.5"
         rx="4.5"
@@ -106,10 +105,10 @@ export const CardMember = ({
         stroke="#c2d1ff"
         width={WIDTH - 5}
         fill="#fffefe"
-        stroke-opacity="1"
+        strokeOpacity="1"
       />
 
-      <g data-testid="card-title" transform="translate(25, 40)">
+      <g transform="translate(25, 40)">
         <g className="anim-popin">
           {avatar ? (
             <svg
@@ -158,20 +157,15 @@ export const CardMember = ({
               <Logo key={index} x={index * 40} y={-20} className="stagger" />
             );
           })}
-          <text
-            x={logos.length * 40}
-            y="0"
-            className="header"
-            data-testid="header"
-          >
+          <text x={logos.length * 40} y="0" className="header">
             {fullname}
           </text>
-          <text x="2" y="30" className="baseline" data-testid="baseline">
+          <text x="2" y="30" className="baseline">
             {role}
           </text>
         </g>
       </g>
-      <g data-testid="main-card-body" transform="translate(25, 95)">
+      <g transform="translate(25, 95)">
         {competences.map((competence: string, index: number) => (
           <g
             key={index}
