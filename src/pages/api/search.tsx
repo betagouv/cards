@@ -1,9 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { renderToString } from "react-dom/server";
 import Fuse from "fuse.js";
-
-import { CardMember } from "../../components/CardMember";
-import { CardStartup } from "../../components/CardStartup";
 
 type Params = {
   query: string;
@@ -82,20 +78,6 @@ export default async function handler(
     const url = `${host}/api/${result.item.type}/${result.item.id}.svg`;
     res.redirect(url);
     return;
-    // const Component = card.item.type==="startup"?CardStartup:CardMember;
-    // const svg = renderToString(<Component {...data} />);
-    // res.setHeader("content-type", "image/svg+xml; charset=utf-8");
-    // return res.send(svg);
-
-    // const rows = results.flatMap((result) => {
-    //   const url = `${host}/api/${result.item.type}/${result.item.id}`;
-    //   const card = `[![${result.item.id}](${url}.svg)](${url})`;
-    //   const href = url;
-    //   return [card, href];
-    // });
-    // res.json({
-    //   markdown: rows.join("\n\n"),
-    // });
   }
   res.json({
     markdown: "[![]()]()",
