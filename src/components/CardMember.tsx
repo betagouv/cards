@@ -3,101 +3,7 @@ import { LogoBeta } from "./LogoBeta";
 import { LogoGitHub } from "./LogoGitHub";
 import { LogoLinkedIn } from "./LogoLinkedIn";
 import { LogoTwitter } from "./LogoTwitter";
-
-const css = `
-text {
-  font: 300 14px 'Segoe UI', Ubuntu, Sans-Serif;
-  fill: #777;
-}
-.header {
-    font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-    fill: #000091;
-    animation: fadeInAnimation 0.8s ease-in-out forwards;
-}
-.baseline {
-    font: 300 14px 'Segoe UI', Ubuntu, Sans-Serif;
-    fill: #777;
-    animation: fadeInAnimation 0.8s ease-in-out forwards;
-}
-@supports(-moz-appearance: auto) {
-    /* Selector detects Firefox */
-    .header { font-size: 15.5px; }
-}
-        
-@keyframes slideInAnimation {
-    from {
-    width: 0;
-    }
-    to {
-    width: calc(100%-100px);
-    }
-}
-@keyframes growWidthAnimation {
-    from {
-    width: 0;
-    }
-    to {
-    width: 100%;
-    }
-}
-.stat {
-    font: 600 12px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #434d58;
-}
-@supports(-moz-appearance: auto) {
-    /* Selector detects Firefox */
-    .stat { font-size:12px; }
-}
-.bold { font-weight: 700 }
-.lang-name {
-    font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
-    fill: #434d58;
-}
-.stagger {
-    opacity: 0;
-    animation-delay:200ms;
-    animation: fadeInAnimation 0.3s ease-in-out forwards;
-}
-#rect-mask rect{
-    animation: slideInAnimation 1s ease-in-out forwards;
-}
-.lang-progress{
-    animation: growWidthAnimation 0.6s ease-in-out forwards;
-}
-
-.anim-popin {
-  transform-delay:200ms;
-  transform: translate(0, -25px) scale(0);
-  transform-origin: 30px 20px;
-  animation: popInAnimation 0.3s ease-in-out forwards;
-}
-
-
-/* Animations */
-@keyframes scaleInAnimation {
-    from {
-        transform: translate(-5px, 5px) scale(0);
-    }
-    to {
-        transform: translate(-5px, 5px) scale(1);
-    }
-}
-@keyframes fadeInAnimation {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-@keyframes popInAnimation {
-    from {
-      transform: translate(0, -25px) scale(0);
-    }
-    to {
-      transform: translate(0, -25px) scale(1);
-    }
-}
-`;
+import { css } from "../css";
 
 const WIDTH = 450;
 
@@ -301,7 +207,7 @@ export const CardMember = ({
               style={{ animationDelay: `${300 * (index + (team ? 2 : 1))}ms` }}
               transform={`translate(0, ${20 * (index + (team ? 1 : 0))})`}
             >
-              <a href={`https://beta.gouv.fr/startups/${startup}.html`}>
+              <a href={`/api/startup/${startup}`}>
                 <circle cx="5" cy="6" r="5" fill="#3572A5" />
                 <text x="15" y="10" fill="#ddd">
                   {startup}
@@ -322,7 +228,7 @@ export const CardMember = ({
                 20 * (index + (team ? 1 : 0) + activeStartups.length)
               })`}
             >
-              <a href={`https://beta.gouv.fr/startups/${startup}.html`}>
+              <a href={`/api/startup/${startup}`}>
                 <circle cx="5" cy="6" r="5" fill="#3572A566" />
                 <text x="15" y="10" fill="#ddd">
                   {startup}

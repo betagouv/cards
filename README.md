@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+![blabla](http://127.0.0.1:3000/api/member/julien.dauphant.svg)
+
 First, run the development server:
 
 ```bash
