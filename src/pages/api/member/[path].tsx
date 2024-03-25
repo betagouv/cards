@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import yaml from "yaml";
 
-import { Member } from "../../../components/MemberCard";
+import { CardMember } from "../../../components/CardMember";
 import { renderToString } from "react-dom/server";
 
 type Params = {
@@ -37,12 +37,29 @@ export default async function handler(
         const [_, id, dot, extension, ...args] = matches;
         const data = await getGitHubMemberData(id);
         if (data) {
-          const svg = renderToString(<Member {...data} />);
+          let avatar;
+          if (data.github) {
+            data.avatar = await fetch(
+              `https://github.com/${data.github}.png?size=100`
+            )
+              .then((r) => r.blob())
+              .then(async (blob) => {
+                const buffer = Buffer.from(await blob.arrayBuffer());
+                return `data:image/png;base64,${buffer.toString("base64")}`;
+              });
+
+            //.then((data) => data.text());
+            //.then((t) => t.toString());
+            // const buf = Buffer.from(avatar, "base64");
+            // console.log("avatar", buf);
+            // avatar =
+          }
+          const svg = renderToString(<CardMember {...data} />);
           if (extension === "json") {
             res.setHeader("content-type", "application/json; charset=utf-8");
             return res.json(data);
           } else if (extension === "svg") {
-            res.setHeader("content-type", "text/svg; charset=utf-8");
+            res.setHeader("content-type", "image/svg+xml; charset=utf-8");
             return res.send(svg);
           } else {
             res.setHeader("content-type", "text/html; charset=utf-8");
@@ -53,7 +70,7 @@ export default async function handler(
                     <title>{data.fullname}</title>
                   </head>
                   <body>
-                    <Member {...data} />
+                    <CardMember {...data} />
                   </body>
                 </html>
               )

@@ -11,7 +11,7 @@ text {
 }
 .header {
     font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-    fill: #2f80ed;
+    fill: #000091;
     animation: fadeInAnimation 0.8s ease-in-out forwards;
 }
 .baseline {
@@ -41,7 +41,7 @@ text {
     }
 }
 .stat {
-    font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #434d58;
+    font: 600 12px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #434d58;
 }
 @supports(-moz-appearance: auto) {
     /* Selector detects Firefox */
@@ -54,6 +54,7 @@ text {
 }
 .stagger {
     opacity: 0;
+    animation-delay:200ms;
     animation: fadeInAnimation 0.3s ease-in-out forwards;
 }
 #rect-mask rect{
@@ -61,6 +62,13 @@ text {
 }
 .lang-progress{
     animation: growWidthAnimation 0.6s ease-in-out forwards;
+}
+
+.anim-popin {
+  transform-delay:200ms;
+  transform: translate(0, -25px) scale(0);
+  transform-origin: 30px 20px;
+  animation: popInAnimation 0.3s ease-in-out forwards;
 }
 
 
@@ -81,11 +89,19 @@ text {
         opacity: 1;
     }
 }
+@keyframes popInAnimation {
+    from {
+      transform: translate(0, -25px) scale(0);
+    }
+    to {
+      transform: translate(0, -25px) scale(1);
+    }
+}
 `;
 
 const WIDTH = 450;
 
-export const Member = ({
+export const CardMember = ({
   fullname,
   role,
   link,
@@ -95,6 +111,7 @@ export const Member = ({
   missions = [],
   startups = [],
   previously = [],
+  avatar,
 }: {
   fullname: string;
   role: string;
@@ -105,6 +122,7 @@ export const Member = ({
   startups?: string[];
   previously?: string[];
   teams: string[];
+  avatar?: string;
 }) => {
   const logos = [];
   const url = link;
@@ -135,15 +153,26 @@ export const Member = ({
     ));
   }
   const CARD_MIN_HEIGHT = 120;
-
+  const isActive = (mission: any) =>
+    mission.end ? new Date(mission.end) > new Date() : true;
   const team = teams.length && teams[0].replace("/teams/", "");
-  const allStartups = Array.from(
+  const previousStartups = Array.from(
     new Set([
-      ...missions.flatMap((m: any) => m.startups || []),
-      ...startups,
-      ...previously,
+      ...missions
+        .filter((s) => !isActive(s))
+        .flatMap((m: any) => m.startups || []),
+      ...(previously || []),
     ])
   ).sort() as string[];
+  const activeStartups = Array.from(
+    new Set([
+      ...missions
+        .filter((s) => isActive(s))
+        .flatMap((m: any) => m.startups || []),
+      ...(startups || []),
+    ])
+  ).sort() as string[];
+  const allStartups = [...activeStartups, ...previousStartups];
   const computedHeight =
     70 +
     30 +
@@ -168,18 +197,60 @@ export const Member = ({
         y="0.5"
         rx="4.5"
         height="99%"
-        stroke="#e4e2e2"
+        stroke="#c2d1ff"
         width={WIDTH - 5}
         fill="#fffefe"
         stroke-opacity="1"
       />
+
       <g data-testid="card-title" transform="translate(25, 40)">
-        <g transform="translate(0, -25)">
-          <LogoBeta width={64} height={64} />
+        <g className="anim-popin">
+          {avatar ? (
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 64 64"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <mask id="m1">
+                  <circle
+                    cx={32}
+                    cy={32}
+                    r={30}
+                    fill="white"
+                    stroke="#000091"
+                    strokeWidth={2}
+                  />
+                </mask>
+              </defs>
+              <circle
+                cx={32}
+                cy={32}
+                r={32}
+                fill="#c2d1ff"
+                stroke=""
+                strokeWidth={1}
+              />
+              <image
+                x={1}
+                y={1}
+                width="62"
+                height="62"
+                href={avatar}
+                mask="url(#m1)"
+              />
+            </svg>
+          ) : (
+            <LogoBeta width={64} height={64} />
+          )}
         </g>
+
         <g transform="translate(80, 0)">
           {logos.map((Logo, index) => {
-            return <Logo key={index} x={index * 40} y={-20} />;
+            return (
+              <Logo key={index} x={index * 40} y={-20} className="stagger" />
+            );
           })}
           <text
             x={logos.length * 40}
@@ -189,7 +260,7 @@ export const Member = ({
           >
             {fullname}
           </text>
-          <text x="4" y="30" className="baseline" data-testid="baseline">
+          <text x="2" y="30" className="baseline" data-testid="baseline">
             {role}
           </text>
         </g>
@@ -217,13 +288,13 @@ export const Member = ({
         >
           {team && (
             <g className="stagger" style={{ animationDelay: `${300}ms` }}>
-              <circle cx="5" cy="6" r="5" fill="#4F5D95" />
+              <circle cx="5" cy="6" r="5" fill="#e34c26" />
               <text x="15" y="10" fill="#ddd">
                 {team}
               </text>
             </g>
           )}
-          {allStartups.map((startup, index) => (
+          {activeStartups.map((startup, index) => (
             <g
               key={index}
               className="stagger"
@@ -232,6 +303,27 @@ export const Member = ({
             >
               <a href={`https://beta.gouv.fr/startups/${startup}.html`}>
                 <circle cx="5" cy="6" r="5" fill="#3572A5" />
+                <text x="15" y="10" fill="#ddd">
+                  {startup}
+                </text>
+              </a>
+            </g>
+          ))}
+          {previousStartups.map((startup, index) => (
+            <g
+              key={index}
+              className="stagger"
+              style={{
+                animationDelay: `${
+                  300 * (index + (team ? 2 : 1) + activeStartups.length)
+                }ms`,
+              }}
+              transform={`translate(0, ${
+                20 * (index + (team ? 1 : 0) + activeStartups.length)
+              })`}
+            >
+              <a href={`https://beta.gouv.fr/startups/${startup}.html`}>
+                <circle cx="5" cy="6" r="5" fill="#3572A566" />
                 <text x="15" y="10" fill="#ddd">
                   {startup}
                 </text>

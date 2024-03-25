@@ -72,6 +72,7 @@ export const LogoBeta = (props: SVGProps<any>) => (
       <mask id="mask-2" fill="white">
         <use xlinkHref="#path-1"></use>
       </mask>
+
       <use id="background" fill="#FFFFFF" xlinkHref="#path-1"></use>
       <g id="g5012" mask="url(#mask-2)">
         <g transform="translate(-0.271135, -0.463753)">
@@ -87,6 +88,10 @@ export const LogoBeta = (props: SVGProps<any>) => (
             fill-rule="evenodd"
             mask="url(#mask-4)"
           >
+            <image
+              id="avatar"
+              xlinkHref={`https://github.com/revolunet.png?size=40`}
+            />
             <g transform="translate(0.000000, 0.000000)">
               <g
                 id="g4184-Clipped"

@@ -6,9 +6,11 @@ export const LogoGitHub = (props: SVGProps<any>) => (
     height="96"
     xmlns="http://www.w3.org/2000/svg"
     viewBox={`0 0 98 96`}
-    fill="#2f80ed"
+    fill="#000091"
     {...props}
   >
+    {/*<!-- force clickable area -->*/}
+    <circle cx="50" cy="50" r="50" style={{ fill: "white", fillOpacity: 0 }} />
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"
