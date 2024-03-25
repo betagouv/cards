@@ -31,7 +31,7 @@ const findResults = async ({
   limit: number;
 }) => {
   const members: SearchItem[] = await fetch(
-    "http://127.0.0.1:4000/api/v2.6/authors.json"
+    "https://beta.gouv.fr/api/v2.6/authors.json"
   )
     .then((r) => r.json())
     .then((r) =>
@@ -42,7 +42,7 @@ const findResults = async ({
       }))
     );
   const startups: SearchItem[] = await fetch(
-    "http://127.0.0.1:4000/api/v2.6/startups.json"
+    "https://beta.gouv.fr/api/v2.6/startups.json"
   )
     .then((r) => r.json())
     .then((r) =>
