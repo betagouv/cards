@@ -65,9 +65,11 @@ export default async function handler(
   res: NextApiResponse,
   context: { params: Params }
 ) {
+  console.log("/api/mattermost/fiche", request.method);
   if (request.method === "POST") {
     const { text, token } = request.body;
     if (token === process.env.MATTERMOST_TOKEN) {
+      console.log("search results", text);
       const results = await findResults({
         query: text,
         limit: 3,
@@ -76,6 +78,7 @@ export default async function handler(
         const result = results[0];
         const host = process.env.DOMAIN || "http://127.0.0.1:3000";
         const url = `${host}/api/${result.item.type}/${result.item.id}`;
+        console.log("url", url);
         res.json({
           response_type: "in_channel",
           text: `[![${result.item.id}](${url}.svg)](${url})`,
@@ -86,6 +89,7 @@ export default async function handler(
         response_type: "in_channel",
         text: "Désolé je ne trouve pas de fiche correspondante 🤷‍♂️",
       });
+      return;
     }
   }
 
