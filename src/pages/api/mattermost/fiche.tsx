@@ -87,7 +87,7 @@ export default async function handler(
       }
       res.json({
         response_type: "in_channel",
-        text: "Désolé je ne trouve pas de fiche correspondante 🤷‍♂️",
+        text: `Désolé je ne trouve pas de fiche correspondante pour "${text}" 🤷‍♂️\n\nPoses [une issue sur GitHub](https://github.com/betagouv/cards/issues) si c'est un bug.`,
       });
       return;
     }
