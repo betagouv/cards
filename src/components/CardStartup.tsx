@@ -69,18 +69,31 @@ export const CardStartup = ({
     label: `Phase: ${getLatestPhase(phases)}`,
     color: "#3572A5",
   });
-
   pins.push({
     label: "Fiche beta.gouv.fr",
     href: `https://beta.gouv.fr/startups/${id}.html`,
     color: "#3572A5",
   });
+  pins.push({
+    label: `Sponsor${sponsors.length > 1 ? "s" : ""}: ${sponsors
+      .map((s: string) => s.replace("/organisations/", "").toUpperCase())
+      .join(", ")}`,
+    href: `#`,
+    color: "#f1e05a",
+  });
+
+  pins.push({
+    label: `Incubateur: ${incubator.toUpperCase()}`,
+    href: `https://beta.gouv.fr/incubateurs/${incubator}.html`,
+    color: "#f1e05a",
+  });
+
   pins.push(
     accessibility_status
       ? {
-          label: `Accessiblité: ${accessibility_status || "?"}`,
+          label: `Accessiblité: ${accessibility_status}`,
           href: `#`,
-          color: "#3572A5",
+          color: "#33de9c",
         }
       : {
           label: "Pas de déclaration d'accessibilité",
@@ -93,7 +106,7 @@ export const CardStartup = ({
       ? {
           label: "Page de statistiques",
           href: stats_url,
-          color: "#3572A5",
+          color: "#33de9c",
         }
       : {
           label: "Pas de page de statistiques",
@@ -101,19 +114,6 @@ export const CardStartup = ({
           color: "#ff0200",
         }
   );
-  pins.push({
-    label: `Sponsor${sponsors.length > 1 ? "s" : ""}: ${sponsors
-      .map((s: string) => s.replace("/organisations/", "").toUpperCase())
-      .join(", ")}`,
-    href: `#`,
-    color: "#3572A5",
-  });
-
-  pins.push({
-    label: `Incubateur: ${incubator.toUpperCase()}`,
-    href: `https://beta.gouv.fr/incubateurs/${incubator}.html`,
-    color: "#3572A5",
-  });
 
   const computedHeight = Math.max(
     250,
@@ -216,6 +216,7 @@ export const CardStartup = ({
           );
         })}
       </g>
+
       {pins.map((pin, i) => (
         <g key={pin.label} transform={`translate(25, ${105 + 20 * i})`}>
           <a href={pin.href}>
