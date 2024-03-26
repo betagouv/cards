@@ -19,6 +19,7 @@ export const getStartupData = (id: string) => {
         .split("---")
         .map((s: string) => s.trim())
         .filter(Boolean)[0];
+
       const details = await fetch(
         `https://beta.gouv.fr/api/v2.6/startups_details.json`
       )
@@ -38,18 +39,22 @@ export const getStartupData = (id: string) => {
         }));
 
       const data = yaml.parse(frontMatter);
+
       const startupRespopos =
         //@ts-ignore
-        respopos[data.incubator]
+        (respopos[data.incubator] || [])
           .map((r: any) => {
             const m = allMembers.find((m: any) => m.id === r);
-            return {
-              id: m.id,
-              fullname: m.fullname,
-              role: m.role,
-            };
+            return (
+              m && {
+                id: m.id,
+                fullname: m.fullname,
+                role: m.role,
+              }
+            );
           })
-          .filter(Boolean) || [];
+          .filter(Boolean);
+
       return {
         id,
         ...data,

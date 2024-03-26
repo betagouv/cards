@@ -16,7 +16,7 @@ export const respopos = {
   anct: ["adrien.zemour", "ishan.bhojwani"],
   "lab-mi": ["thibault.desjardins", "arthur.hatchuel"],
   justice: ["paul.burgun", "ishan.bhojwani"],
-  dinum: ["clemence.lopez", "arhur.hatchuel"],
+  dinum: ["clemence.lopez", "arthur.hatchuel"],
   "lab-innov-anssi": ["elsa.le-duigou", "ishan.bhojwani"],
   "gip-inclusion": ["yowa.muzadi", "ishan.bhojwani"],
   "pole-emploi": ["yowa.muzadi", "ishan.bhojwani"],
