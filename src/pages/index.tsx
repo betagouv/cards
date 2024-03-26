@@ -4,14 +4,14 @@ function Page() {
     <div>
       <h1>Carte startup</h1>
       <pre style={{ padding: 3, background: "#ddd", display: "inline" }}>
-        &lt;img src=&quot;/api/startup/codedutravail.svg&quot; /&gt;
+        &lt;img src=&quot;/api/startup/codedutravail.[svg|png]&quot; /&gt;
       </pre>
       <br />
       <br />
       <img src="/api/startup/codedutravail.svg" />
       <h1>Carte membre</h1>
       <pre style={{ padding: 3, background: "#ddd", display: "inline" }}>
-        &lt;img src=&quot;/api/member/julien.dauphant.svg&quot; /&gt;
+        &lt;img src=&quot;/api/member/julien.dauphant.[svg|png]&quot; /&gt;
       </pre>
       <br />
       <br />
