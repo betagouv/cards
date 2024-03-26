@@ -1,4 +1,4 @@
-export const css = `
+export const getCss = ({ animate = false }) => `
 text {
   font: 300 14px 'Segoe UI', Ubuntu, Sans-Serif;
   fill: #777;
@@ -6,12 +6,12 @@ text {
 .header {
     font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
     fill: #000091;
-    animation: fadeInAnimation 0.8s ease-in-out forwards;
+    ${animate && `animation: fadeInAnimation 0.8s ease-in-out forwards;`}
 }
 .baseline {
     font: 300 14px 'Segoe UI', Ubuntu, Sans-Serif;
     fill: #777;
-    animation: fadeInAnimation 0.8s ease-in-out forwards;
+    ${animate && `animation: fadeInAnimation 0.8s ease-in-out forwards;`}
 }
 @supports(-moz-appearance: auto) {
     /* Selector detects Firefox */
@@ -20,18 +20,18 @@ text {
         
 @keyframes slideInAnimation {
     from {
-    width: 0;
+        width: 0;
     }
     to {
-    width: calc(100%-100px);
+        width: calc(100%-100px);
     }
 }
 @keyframes growWidthAnimation {
     from {
-    width: 0;
+        width: 0;
     }
     to {
-    width: 100%;
+        width: 100%;
     }
 }
 .stat {
@@ -47,24 +47,23 @@ text {
     fill: #434d58;
 }
 .stagger {
-    opacity: 0;
+    opacity: ${animate ? 0 : 1};
     animation-delay:200ms;
-    animation: fadeInAnimation 0.3s ease-in-out forwards;
+    ${animate && `animation: fadeInAnimation 0.3s ease-in-out forwards;`}
 }
 #rect-mask rect{
-    animation: slideInAnimation 1s ease-in-out forwards;
+    ${animate && `animation: slideInAnimation 1s ease-in-out forwards;`}
 }
 .lang-progress{
-    animation: growWidthAnimation 0.6s ease-in-out forwards;
+    ${animate && `animation: growWidthAnimation 0.6s ease-in-out forwards;`}
 }
 
 .anim-popin {
   transform-delay:200ms;
-  transform: translate(0, -25px) scale(0);
+  transform: translate(0, -25px) scale(${animate ? 0 : 1});
   transform-origin: 30px 20px;
-  animation: popInAnimation 0.3s ease-in-out forwards;
+  ${animate && `animation: popInAnimation 0.3s ease-in-out forwards;`}
 }
-
 
 /* Animations */
 @keyframes scaleInAnimation {

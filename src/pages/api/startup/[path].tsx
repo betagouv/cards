@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { renderToString } from "react-dom/server";
 import yaml from "yaml";
-
+import sharp from "sharp";
 import { CardStartup } from "../../../components/CardStartup";
 import { respopos } from "../../../respopos";
 
@@ -74,18 +74,32 @@ export default async function handler(
     const { path } = request.query;
     // todo: validate params
     if (path && !Array.isArray(path)) {
-      const matches = path.match(/^(.*?)(\.(json|svg))?$/);
+      const matches = path.match(/^(.*?)(\.(json|svg|png))?$/);
       if (matches) {
         const [_, id, dot, extension, ...args] = matches;
         const data = await getStartupData(id);
         if (data) {
-          const svg = renderToString(<CardStartup {...data} />);
           if (extension === "json") {
             res.setHeader("content-type", "application/json; charset=utf-8");
             return res.json(data);
           } else if (extension === "svg") {
+            const svg = renderToString(
+              <CardStartup {...data} animate={true} />
+            );
             res.setHeader("content-type", "image/svg+xml; charset=utf-8");
             return res.send(svg);
+          } else if (extension === "png") {
+            const svg = renderToString(<CardStartup {...data} />);
+            const png = await sharp(Buffer.from(svg))
+              .resize(800)
+              .png({
+                quality: 100,
+                adaptiveFiltering: true,
+                compressionLevel: 1,
+              })
+              .toBuffer();
+            res.setHeader("content-type", "image/png");
+            return res.send(png);
           } else {
             res.setHeader("content-type", "text/html; charset=utf-8");
             return res.send(
@@ -95,7 +109,7 @@ export default async function handler(
                     <title>{data.title}</title>
                   </head>
                   <body>
-                    <CardStartup {...data} />
+                    <CardStartup {...data} animate={true} />
                   </body>
                 </html>
               )

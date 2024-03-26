@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { renderToString } from "react-dom/server";
 import yaml from "yaml";
+import sharp from "sharp";
 
 import { CardMember } from "../../../components/CardMember";
-import { renderToString } from "react-dom/server";
 
 type Params = {
   team: string;
@@ -27,8 +28,13 @@ export const getGitHubMemberData = (id: string) => {
         )
           .then((r) => r.blob())
           .then(async (blob) => {
-            const buffer = Buffer.from(await blob.arrayBuffer());
-            return `data:image/png;base64,${buffer.toString("base64")}`;
+            // convert to JPEG for sharp PNG conversion
+            const buffer = await sharp(await blob.arrayBuffer())
+              .jpeg({
+                quality: 95,
+              })
+              .toBuffer();
+            return `data:image/jpeg;base64,${buffer.toString("base64")}`;
           });
       }
       return {
@@ -48,18 +54,30 @@ export default async function handler(
     const { path } = request.query;
     // todo: validate params
     if (path && !Array.isArray(path)) {
-      const matches = path.match(/^(.*?)(\.(json|svg))?$/);
+      const matches = path.match(/^(.*?)(\.(json|svg|png))?$/);
       if (matches) {
         const [_, id, dot, extension, ...args] = matches;
         const data = await getGitHubMemberData(id);
         if (data) {
-          const svg = renderToString(<CardMember {...data} />);
           if (extension === "json") {
             res.setHeader("content-type", "application/json; charset=utf-8");
             return res.json(data);
           } else if (extension === "svg") {
+            const svg = renderToString(<CardMember {...data} animate={true} />);
             res.setHeader("content-type", "image/svg+xml; charset=utf-8");
             return res.send(svg);
+          } else if (extension === "png") {
+            const svg = renderToString(<CardMember {...data} />);
+            const png = await sharp(Buffer.from(svg))
+              .resize(800)
+              .png({
+                quality: 100,
+                adaptiveFiltering: true,
+                compressionLevel: 1,
+              })
+              .toBuffer();
+            res.setHeader("content-type", "image/png");
+            return res.send(png);
           } else {
             res.setHeader("content-type", "text/html; charset=utf-8");
             return res.send(
@@ -69,7 +87,7 @@ export default async function handler(
                     <title>{data.fullname}</title>
                   </head>
                   <body>
-                    <CardMember {...data} />
+                    <CardMember {...data} animate={true} />
                   </body>
                 </html>
               )

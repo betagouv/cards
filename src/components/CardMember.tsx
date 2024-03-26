@@ -3,7 +3,7 @@ import { LogoBeta } from "./LogoBeta";
 import { LogoGitHub } from "./LogoGitHub";
 import { LogoLinkedIn } from "./LogoLinkedIn";
 import { LogoTwitter } from "./LogoTwitter";
-import { css } from "../css";
+import { getCss } from "../css";
 
 const WIDTH = 450;
 
@@ -18,6 +18,7 @@ export const CardMember = ({
   startups = [],
   previously = [],
   avatar,
+  animate = false,
 }: {
   fullname: string;
   role: string;
@@ -29,6 +30,7 @@ export const CardMember = ({
   previously?: string[];
   teams: string[];
   avatar?: string;
+  animate: boolean;
 }) => {
   const logos = [];
   const url = link;
@@ -96,7 +98,8 @@ export const CardMember = ({
     >
       <title id="titleId"></title>
       <desc id="descId"></desc>
-      <style>{css}</style>
+      <style>{getCss({ animate })}</style>
+
       <rect
         x="0.5"
         y="0.5"

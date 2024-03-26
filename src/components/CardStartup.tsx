@@ -3,7 +3,7 @@ import { LogoBeta } from "./LogoBeta";
 import { LogoGitHub } from "./LogoGitHub";
 import { LogoEmail } from "./LogoEmail";
 
-import { css } from "../css";
+import { getCss } from "../css";
 import { wrapTextMultiline } from "@/utils";
 
 const WIDTH = 600;
@@ -35,6 +35,7 @@ export const CardStartup = ({
   accessibility_status,
   active_members,
   respopos,
+  animate = false,
 }: any) => {
   const logos = [];
   const url = link;
@@ -137,7 +138,7 @@ export const CardStartup = ({
     >
       <title id="titleId"></title>
       <desc id="descId"></desc>
-      <style>{css}</style>
+      <style>{getCss({ animate })}</style>
       <rect
         x="0.5"
         y="0.5"
