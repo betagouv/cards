@@ -4,6 +4,7 @@ import { LogoGitHub } from "./LogoGitHub";
 import { LogoLinkedIn } from "./LogoLinkedIn";
 import { LogoTwitter } from "./LogoTwitter";
 import { getCss } from "../css";
+import { wrapTextMultiline } from "@/utils";
 
 const WIDTH = 450;
 
@@ -64,6 +65,7 @@ export const CardMember = ({
   const isActive = (mission: any) =>
     mission.end ? new Date(mission.end) > new Date() : true;
   const team = teams.length && teams[0].replace("/teams/", "");
+  const roleLines = wrapTextMultiline(role, 50);
   const previousStartups = Array.from(
     new Set([
       ...missions
@@ -163,9 +165,13 @@ export const CardMember = ({
           <text x={logos.length * 40} y="0" className="header">
             {fullname}
           </text>
-          <text x="2" y="30" className="baseline">
-            {role}
-          </text>
+          {roleLines.map((line: string, i: number) => {
+            return (
+              <text className="baseline" key={line} x="3" y={8 + (i + 1) * 17}>
+                {line}
+              </text>
+            );
+          })}
         </g>
       </g>
       <g transform="translate(25, 95)">

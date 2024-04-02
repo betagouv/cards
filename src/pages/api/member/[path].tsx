@@ -87,7 +87,15 @@ export default async function handler(
                     <title>{data.fullname}</title>
                   </head>
                   <body>
-                    <CardMember {...data} animate={true} />
+                    <div
+                      style={{
+                        textAlign: "center",
+                        paddingTop: "20vh",
+                        transform: "scale(2)",
+                      }}
+                    >
+                      <CardMember {...data} animate={true} />
+                    </div>
                   </body>
                 </html>
               )

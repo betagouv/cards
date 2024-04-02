@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function Page() {
   const host = typeof document !== "undefined" && document.location.host;
   return (
@@ -30,6 +32,16 @@ function Page() {
       <br />
       <br />
       <img src="/api/search?q=code%20du%20travail" />
+      <h1>Pages</h1>
+      <Link href="/api/startup/domifa">/api/startup/domifa</Link>
+      <br />
+      <br />
+      <Link href="/api/member/benjamin.doberset">
+        /api/member/benjamin.doberset
+      </Link>
+      <br />
+      <br />
+      <br />
     </div>
   );
 }
