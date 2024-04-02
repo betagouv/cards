@@ -109,7 +109,15 @@ export default async function handler(
                     <title>{data.title}</title>
                   </head>
                   <body>
-                    <CardStartup {...data} animate={true} />
+                    <div
+                      style={{
+                        textAlign: "center",
+                        paddingTop: "20vh",
+                        transform: "scale(2)",
+                      }}
+                    >
+                      <CardStartup {...data} animate={true} />
+                    </div>
                   </body>
                 </html>
               )
