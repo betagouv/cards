@@ -69,7 +69,7 @@ export default async function handler(
           } else if (extension === "png") {
             const svg = renderToString(<CardMember {...data} />);
             const png = await sharp(Buffer.from(svg))
-              .resize(600)
+              .resize(1000)
               .png({
                 quality: 100,
                 adaptiveFiltering: true,
