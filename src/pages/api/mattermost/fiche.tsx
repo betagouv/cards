@@ -79,13 +79,13 @@ export default async function handler(
         const host = process.env.DOMAIN || "http://127.0.0.1:3000";
         const url = `${host}/api/${result.item.type}/${result.item.id}`;
         res.json({
-          response_type: "in_channel",
+          response_type: "ephemeral",
           text: `[![${result.item.id}](${url}.png)](${url})`,
         });
         return;
       }
       res.json({
-        response_type: "in_channel",
+        response_type: "ephemeral",
         text: `Désolé je ne trouve pas de fiche correspondante pour "${text}" 🤷‍♂️\n\n👉 Poses [une issue sur GitHub](https://github.com/betagouv/cards/issues/new) si c'est un bug.`,
       });
       return;
