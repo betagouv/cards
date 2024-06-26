@@ -93,7 +93,7 @@ export default async function handler(
               title: urlTitle,
               title_link: url,
               //text: `![Fiche](${cardUrl}.svg =800)`,
-              image_url: `${cardUrl}.png`,
+              image_url: `${cardUrl}.svg`,
             },
           ],
         });

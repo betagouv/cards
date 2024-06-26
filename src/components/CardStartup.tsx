@@ -29,6 +29,7 @@ export const CardStartup = ({
   phases,
   link,
   contact,
+  stats,
   stats_url,
   repository,
   dashlord_url,
@@ -104,10 +105,10 @@ export const CardStartup = ({
         }
   );
   pins.push(
-    stats_url
+    stats || stats_url
       ? {
           label: "Page de statistiques",
-          href: stats_url,
+          href: stats_url || `${link}/stats`,
           color: "#33de9c",
         }
       : {
