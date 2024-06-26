@@ -71,7 +71,7 @@ export default async function handler(
             const png = await sharp(Buffer.from(svg))
               .resize(1000)
               .png({
-                quality: 100,
+                quality: 95,
                 adaptiveFiltering: true,
                 compressionLevel: 1,
               })
