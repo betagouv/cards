@@ -74,7 +74,7 @@ export default async function handler(
         query: text,
         limit: 3,
       });
-      if (results.length) {
+      if (results && results.length) {
         const result = results[0];
         const host = process.env.DOMAIN || "http://127.0.0.1:3000";
         const cardUrl = `${host}/api/${result.item.type}/${result.item.id}`;
