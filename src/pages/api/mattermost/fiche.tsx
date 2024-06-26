@@ -80,7 +80,7 @@ export default async function handler(
         const url = `${host}/api/${result.item.type}/${result.item.id}`;
         res.json({
           response_type: "ephemeral",
-          text: `[![${result.item.id}](${url}.png)](${url})`,
+          text: `[![${result.item.id}](${url}.png =600)](${url})`,
         });
         return;
       }
