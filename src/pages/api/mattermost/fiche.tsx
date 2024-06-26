@@ -77,49 +77,21 @@ export default async function handler(
       if (results.length) {
         const result = results[0];
         const host = process.env.DOMAIN || "http://127.0.0.1:3000";
-        const url = `${host}/api/${result.item.type}/${result.item.id}`;
+        const cardUrl = `${host}/api/${result.item.type}/${result.item.id}`;
+        const url =
+          result.item.type === "startup"
+            ? `https://beta.gouv.fr/startups/${result.item.id}`
+            : `https://espace-membre.incubateur.net/community/${result.item.id}`;
+        const urlTitle =
+          result.item.type === "startup"
+            ? "Fiche beta.gouv.fr"
+            : "Fiche espace membre";
         res.json({
           response_type: "ephemeral",
-          //text: `[![${result.item.id}](${url}.png =600)](${url})`,
           attachments: [
             {
-              title: "Fiche beta.gouv.fr",
+              title: urlTitle,
               title_link: url,
-              // fallback: "test",
-              // color: "#FF8000",
-              // pretext:
-              //   "This is optional pretext that shows above the attachment.",
-              // text: "This is the text of the attachment. It should appear just above an image of the Mattermost logo. The left border of the attachment should be colored orange, and below the image it should include additional fields that are formatted in columns. At the top of the attachment, there should be an author name followed by a bolded title. Both the author name and the title should be hyperlinks.",
-              // author_name: "Mattermost",
-              // author_icon:
-              //   "https://mattermost.com/wp-content/uploads/2022/02/icon_WS.png",
-              // author_link: "https://mattermost.org/",
-              // title: "Example Attachment",
-              // title_link:
-              //   "https://developers.mattermost.com/integrate/reference/message-attachments/",
-              // fields: [
-              //   {
-              //     short: false,
-              //     title: "Long Field",
-              //     value:
-              //       "Testing with a very long piece of text that will take up the whole width of the table. And then some more text to make it extra long.",
-              //   },
-              //   {
-              //     short: true,
-              //     title: "Column One",
-              //     value: "Testing",
-              //   },
-              //   {
-              //     short: true,
-              //     title: "Column Two",
-              //     value: "Testing",
-              //   },
-              //   {
-              //     short: false,
-              //     title: "Another Field",
-              //     value: "Testing",
-              //   },
-              // ],
               image_url: `${url}.svg`,
             },
           ],
