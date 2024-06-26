@@ -92,8 +92,8 @@ export default async function handler(
             {
               title: urlTitle,
               title_link: url,
-              text: `![Fiche](${cardUrl}.svg =800)`,
-              //image_url: `${cardUrl}.svg`,
+              //text: `![Fiche](${cardUrl}.svg =800)`,
+              image_url: `${cardUrl}.png`,
             },
           ],
         });
@@ -101,7 +101,7 @@ export default async function handler(
       }
       res.json({
         response_type: "ephemeral",
-        text: `Désolé je ne trouve pas de fiche correspondante pour "${text}" 🤷‍♂️\n\n👉 Poses [une issue sur GitHub](https://github.com/betagouv/cards/issues/new) si c'est un bug.`,
+        text: `Désolé je ne trouve pas de fiche correspondante pour "${text}" 🤷‍♂️\n\n👉 Poses [une issue sur GitHub](https://github.com/betagouv/cards/issues/new) si c'est un bug ou si tu as des idées d'améliorations.`,
       });
       return;
     }
