@@ -84,8 +84,8 @@ export default async function handler(
             : `https://espace-membre.incubateur.net/community/${result.item.id}`;
         const urlTitle =
           result.item.type === "startup"
-            ? "Fiche beta.gouv.fr"
-            : "Fiche espace membre";
+            ? "👉 Fiche beta.gouv.fr"
+            : "👉 Fiche espace membre";
         res.json({
           response_type: "ephemeral",
           attachments: [
